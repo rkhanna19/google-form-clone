@@ -34,7 +34,7 @@ import {
 
 const useStyles = makeStyles({
     container: {
-      padding: 50,
+      padding: 5,
     },
     question: {
         marginLeft: 20,
@@ -59,7 +59,7 @@ const useStyles = makeStyles({
     },
   });
 
-function QuestionCard() {
+function QuestionCard({id, handleAdd, handleDelete}) {
     const classes = useStyles();
 
     const [type, setType] = useState('Multiple choice');
@@ -86,7 +86,6 @@ function QuestionCard() {
     }
 
     return (
-        <Container maxWidth='lg' className={classes.container}>
             <Card variant='outlined'>
                 <CardHeader 
                     title={
@@ -130,10 +129,10 @@ function QuestionCard() {
                 </CardContent>
                 <CardActions disableSpacing>
                         <IconButton aria-label='delete'>
-                            <Delete size='Large' className={classes.delete}/>
+                            <Delete size='Large' className={classes.delete} onClick={handleDelete}/>
                         </IconButton>
                         <IconButton aria-label='add'>
-                            <Add size='Large' className={classes.delete} />
+                            <Add size='Large' className={classes.delete} onClick={handleAdd}/>
                         </IconButton>
                         <IconButton aria-label='up'>
                             <ArrowUpward size='Large' className={classes.delete} />
@@ -143,7 +142,6 @@ function QuestionCard() {
                         </IconButton>
                 </CardActions>
             </Card>
-        </Container>
     );
 }
 

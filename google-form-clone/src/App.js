@@ -6,49 +6,59 @@ import { makeStyles } from '@material-ui/core/styles';
 import QuestionCard from './Question.js';
 import { 
   Container, 
-  GridList, 
-  Grid,
+  GridList,
+  GridListTile,
 } from '@material-ui/core';
-import {
-  Delete, 
-  AddCircle, 
-  Add, 
-  HighlightOff,
-  ArrowUpward,
-  ArrowDownward,
-} from '@material-ui/icons';
+// import {
+//   Delete, 
+//   AddCircle, 
+//   Add, 
+//   HighlightOff,
+//   ArrowUpward,
+//   ArrowDownward,
+// } from '@material-ui/icons';
 
 const useStyles = makeStyles({
   container: {
     padding: 50,
+  },
+  gridlist: {
+    padding: 1,
   },
 });
 
 function App() {
   const classes = useStyles();
 
-  const [questions, setQuestions] = useState()
+  const [questions, setQuestions] = useState([0])
 
-  const handleDelete = () => {
-
+  const handleDelete = (id) => {
+    setQuestions(questions.filter(question => question !== id));
   };
 
   const handleAdd = () => {
+    setQuestions(questions.concat([questions.length]))
+  };
+
+  const handleUp = (id) => {
 
   };
 
-  const handleUp = () => {
-
-  };
-
-  const handleDown = () => {
+  const handleDown = (id) => {
 
   }
 
   return (
     <Container maxWidth='lg' className={classes.container}>
         <Header />
-        <QuestionCard />
+        <Container maxWidth='lg' className={classes.container}>
+          <GridList cellHeight={450} cols={1} className={classes.gridList} spacing={0}>
+            {questions.map((question, id) =>
+            <GridListTile key={question} cols={1}>
+              <QuestionCard id={id} handleAdd={handleAdd} handleDelete={handleDelete}/>
+            </GridListTile>)}
+          </GridList>
+        </Container>
     </Container>
   );
 }
