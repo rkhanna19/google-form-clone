@@ -1,11 +1,22 @@
 // eslint-disable-next-line
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import Header from './Header.js';
 import { makeStyles } from '@material-ui/core/styles';
 import QuestionCard from './Question.js';
-import { Container, Fab } from '@material-ui/core';
-import Add from '@material-ui/icons/Add';
+import { 
+  Container, 
+  GridList, 
+  Grid,
+} from '@material-ui/core';
+import {
+  Delete, 
+  AddCircle, 
+  Add, 
+  HighlightOff,
+  ArrowUpward,
+  ArrowDownward,
+} from '@material-ui/icons';
 
 const useStyles = makeStyles({
   container: {
@@ -16,12 +27,27 @@ const useStyles = makeStyles({
 function App() {
   const classes = useStyles();
 
+  const [questions, setQuestions] = useState()
+
+  const handleDelete = () => {
+
+  };
+
+  const handleAdd = () => {
+
+  };
+
+  const handleUp = () => {
+
+  };
+
+  const handleDown = () => {
+
+  }
+
   return (
     <Container maxWidth='lg' className={classes.container}>
         <Header />
-        {/* <Fab color="primary" aria-label="add">
-          <Add />
-        </Fab> */}
         <QuestionCard />
     </Container>
   );

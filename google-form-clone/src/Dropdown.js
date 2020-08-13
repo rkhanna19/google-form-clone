@@ -32,7 +32,7 @@ export default function Dropdown({handleChange, type}) {
                     <MenuItem value='Short answer'>Short answer</MenuItem>
                     <MenuItem value='Paragraph'>Paragraph</MenuItem>
                     <MenuItem value='Dropdown'>Dropdown</MenuItem>
-                    <MenuItem value='Linear scale'>Linear Scale</MenuItem>
+                    <MenuItem value='Linear scale'>Linear scale</MenuItem>
                 </Select>
             <FormHelperText>Question Type</FormHelperText>
         </FormControl>
