@@ -8,10 +8,11 @@ import {
     GridList,
     GridListTile,
     CardActions,
+    IconButton,
 } from '@material-ui/core';
 import Dropdown from './Dropdown.js';
 import { makeStyles } from '@material-ui/core/styles';
-import {DeleteIcon, AddCircle, Add} from '@material-ui/icons';
+import {Delete, AddCircle, Icon} from '@material-ui/icons';
 
 // class Question {
 
@@ -39,6 +40,9 @@ const useStyles = makeStyles({
     option: {
         padding: 5,
     },
+    delete: {
+        padding: 10,
+    },
   });
 
 function QuestionCard() {
@@ -47,13 +51,12 @@ function QuestionCard() {
     const [name, setName] = useState('Question');
     const [type, setType] = useState('Multiple choice');
     const [options, setOptions] = useState(['Option 1']);
-    console.log(options);
 
     const handleChange = (event) => {
         setType(event.target.value);
-        if (type === 'Paragraph') {
+        if (event.target.value === 'Paragraph') {
             setOptions('Long answer text');
-        } else if (type === 'Short answer') {
+        } else if (event.target.value === 'Short answer') {
             setOptions('Short answer text');
         } else if (!Array.isArray(options)) {
             setOptions(['Option 1']);
@@ -62,7 +65,8 @@ function QuestionCard() {
 
     function addOption() {
         if (Array.isArray(options)) {
-            options.push('Option ' + options.length);
+            let newOptions = options.concat('Option ' + (options.length + 1));
+            setOptions(newOptions);
         }
     }
 
@@ -87,12 +91,15 @@ function QuestionCard() {
                         <Input id={option} placeholder={option} color='primary' fullWidth={true} className={classes.option} inputProps={{style: {fontSize: 18}}} />
                     </GridListTile>
                     )))}
-                    <GridListTile key='<OVO>' cols={1}>
+                    <GridListTile key='<OVO>'>
                         {Array.isArray(options) && <AddCircle onClick={()=> addOption()} />}
                     </GridListTile>
                 </GridList>
                 </CardContent>
                 <CardActions>
+                        <IconButton aria-label='delete'>
+                            <Delete size='Large' className={classes.delete}/>
+                        </IconButton>
                 </CardActions>
             </Card>
         </Container>

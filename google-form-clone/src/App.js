@@ -19,9 +19,9 @@ function App() {
   return (
     <Container maxWidth='lg' className={classes.container}>
         <Header />
-        <Fab color="primary" aria-label="add">
+        {/* <Fab color="primary" aria-label="add">
           <Add />
-        </Fab>
+        </Fab> */}
         <QuestionCard />
     </Container>
   );
