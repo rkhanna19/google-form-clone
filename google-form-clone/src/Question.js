@@ -7,7 +7,6 @@ import {
     Input, 
     GridList,
     GridListTile,
-    Box,
     CardActions,
 } from '@material-ui/core';
 import Dropdown from './Dropdown.js';
@@ -37,6 +36,9 @@ const useStyles = makeStyles({
         // width: 500,
         // height: 450,
     },
+    option: {
+        padding: 5,
+    },
   });
 
 function QuestionCard() {
@@ -45,6 +47,7 @@ function QuestionCard() {
     const [name, setName] = useState('Question');
     const [type, setType] = useState('Multiple choice');
     const [options, setOptions] = useState(['Option 1']);
+    console.log(options);
 
     const handleChange = (event) => {
         setType(event.target.value);
@@ -52,14 +55,14 @@ function QuestionCard() {
             setOptions('Long answer text');
         } else if (type === 'Short answer') {
             setOptions('Short answer text');
-        } else if (Array.isArray(options)) {
+        } else if (!Array.isArray(options)) {
             setOptions(['Option 1']);
         }
     }
 
     function addOption() {
         if (Array.isArray(options)) {
-            setOptions(() => options.push(['Option ' + options.length]));
+            options.push('Option ' + options.length);
         }
     }
 
@@ -68,7 +71,7 @@ function QuestionCard() {
             <Card variant='outlined'>
                 <CardHeader 
                     title={
-                        <Input id='question' placeholder={name} color='primary' className={classes.question} onChange={text => setName(text)} inputProps={{style: {fontSize: 36}}} />
+                        <Input id='question' placeholder='Question' color='primary' className={classes.question} onChange={text => setName(text)} inputProps={{style: {fontSize: 36}}} />
                     }
                     action={<Dropdown type={type} handleChange={handleChange} />}
                 />

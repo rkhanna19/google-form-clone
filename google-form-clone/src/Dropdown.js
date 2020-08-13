@@ -28,7 +28,7 @@ export default function Dropdown({handleChange, type}) {
                     onChange={handleChange}
                     className={classes.select}
                     >
-                    <MenuItem value='Multiple Choice' default>Multiple Choice</MenuItem>
+                    <MenuItem value='Multiple choice' default>Multiple choice</MenuItem>
                     <MenuItem value='Short answer'>Short answer</MenuItem>
                     <MenuItem value='Paragraph'>Paragraph</MenuItem>
                     <MenuItem value='Dropdown'>Dropdown</MenuItem>
