@@ -9,10 +9,11 @@ import {
     GridListTile,
     CardActions,
     IconButton,
+    InputAdornment,
 } from '@material-ui/core';
 import Dropdown from './Dropdown.js';
 import { makeStyles } from '@material-ui/core/styles';
-import {Delete, AddCircle, Icon} from '@material-ui/icons';
+import {Delete, AddCircle, HighlightOff} from '@material-ui/icons';
 
 // class Question {
 
@@ -88,15 +89,29 @@ function QuestionCard() {
                     :
                     (options.map((option) => (
                     <GridListTile key={option} cols={1}>
-                        <Input id={option} placeholder={option} color='primary' fullWidth={true} className={classes.option} inputProps={{style: {fontSize: 18}}} />
+                        <Input 
+                        id={option} 
+                        placeholder={option} 
+                        color='primary' 
+                        fullWidth={true} 
+                        className={classes.option} 
+                        inputProps={{style: {fontSize: 18}}} 
+                        endAdornment={
+                            <InputAdornment position='end'>
+                                <IconButton>
+                                    {(options.length > 1) && <HighlightOff />}
+                                </IconButton>
+                            </InputAdornment>
+                        }
+                        />
                     </GridListTile>
                     )))}
                     <GridListTile key='<OVO>'>
-                        {Array.isArray(options) && <AddCircle onClick={()=> addOption()} />}
+                        {Array.isArray(options) && <IconButton aria-label='add'><AddCircle onClick={()=> addOption()} /></IconButton>}
                     </GridListTile>
                 </GridList>
                 </CardContent>
-                <CardActions>
+                <CardActions disableSpacing>
                         <IconButton aria-label='delete'>
                             <Delete size='Large' className={classes.delete}/>
                         </IconButton>
